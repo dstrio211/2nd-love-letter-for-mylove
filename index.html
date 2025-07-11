@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Kezhia 💌</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffe6f0, #ffffff);
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+    .envelope {
+      width: 150px;
+      height: 100px;
+      background: #fff;
+      border: 2px solid #f99;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.5s ease;
+      z-index: 2;
+    }
+    .envelope::before, .envelope::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #f99;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      top: 0;
+      left: 0;
+      transform-origin: top;
+      transition: transform 0.5s ease;
+    }
+    .envelope.open::before {
+      transform: rotateX(180deg);
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #c00;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .show {
+      opacity: 1;
+    }
+    .full-letter {
+      margin-top: 30px;
+      max-width: 500px;
+      font-size: 1.2em;
+      color: #333;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .full-letter.show {
+      opacity: 1;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background: #ff99aa;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .flowers {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://www.transparenttextures.com/patterns/flowers.png');
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .flower {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://pngimg.com/uploads/flower/flower_PNG124.png');
+      background-size: cover;
+      animation: fall 8s linear infinite;
+      z-index: 1;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flowers"></div>
+  <script>
+    for (let i = 0; i < 15; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(flower);
+    }
+  </script>
+
+  <div class="container">
+    <div class="envelope" onclick="openEnvelope()"></div>
+    <div id="message" class="message">I love you, Kezhia 💖</div>
+    <button id="readBtn" class="btn" style="display:none;" onclick="showLetter()">Read Full Letter</button>
+    <div id="fullLetter" class="full-letter">
+      i love you most to the moon and back and to the sun and around the solar system, you're my universe, my world, my heart. I wish you could know how much I really love you. mwamwamwa. <br><br>
+      - Love, David.
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      const envelope = document.querySelector('.envelope');
+      const message = document.getElementById('message');
+      const readBtn = document.getElementById('readBtn');
+
+      envelope.classList.add('open');
+      message.classList.add('show');
+      readBtn.style.display = 'inline-block';
+    }
+
+    function showLetter() {
+      document.getElementById('fullLetter').classList.add('show');
+    }
+  </script>
+</body>
+</html>
